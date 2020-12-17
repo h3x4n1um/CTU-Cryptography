@@ -2,9 +2,7 @@
 # Mã số sinh viên: B1812339
 # STT: 76
 
-from Crypto import Random
 from Crypto.Cipher import PKCS1_v1_5
-from Crypto.Hash import SHA
 from Crypto.PublicKey import RSA
 from tkinter import *
 from tkinter import filedialog
@@ -30,14 +28,14 @@ def generate_key():
         key.exportKey('PEM'),
         'wb',
         'Lưu khóa cá nhân',
-        (("All files", "*.*"), ("PEM files", "*.pem")),
+        (("PEM files", "*.pem"), ("All files", "*.*")),
         ".pem")
 
     save_file(
         key.publickey().exportKey('PEM'),
         'wb',
         'Lưu khóa công khai',
-        (("All files", "*.*"),("PEM files", "*.pem")),
+        (("PEM files", "*.pem"), ("All files", "*.*")),
         ".pem")
 
     pri_key.delete('1.0',END)
