@@ -1,12 +1,15 @@
 from Crypto.Cipher import DES
 import base64
 
+
 def pad(s):
-    #Them vao cuoi so con thieu cho du boi cua 8
+    # Them vao cuoi so con thieu cho du boi cua 8
     return s + (8 - len(s) % 8) * chr(8 - len(s) % 8)
+
 
 def unpad(s):
     return s[:-ord(s[len(s)-1:])]
+
 
 def mahoa_DES(s, k):
     txt = pad(s).encode("utf8")
@@ -16,12 +19,14 @@ def mahoa_DES(s, k):
     entxt = base64.b64encode(entxt)
     return entxt
 
+
 def giaima_DES(s, k):
     txt = base64.b64decode(s)
     key = pad(k).encode("utf8")
     cipher = DES.new(key, DES.MODE_ECB)
     detxt = unpad(cipher.decrypt(txt))
     return detxt
+
 
 if __name__ == "__main__":
     opt = 2

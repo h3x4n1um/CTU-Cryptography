@@ -1,10 +1,13 @@
 import math
 
+
 def Char2Num(c):
     return ord(c)-65
 
+
 def Num2Char(n):
-    return chr(n+65)
+    return chr(n+65)
+
 
 def decrypt(encrypted, a, b, m):
     # find a^-1
@@ -20,6 +23,7 @@ def decrypt(encrypted, a, b, m):
         tmp = rev_a*(Char2Num(y)-b) % m
         decrypted = decrypted + Num2Char(tmp)
     return decrypted
+
 
 if __name__ == "__main__":
     encrypted = "HKLZOVYQPTOBJDVOBLBUBOHKWBGVUVYVZUTZGHOVYQPBYVREOZRBTTBT"

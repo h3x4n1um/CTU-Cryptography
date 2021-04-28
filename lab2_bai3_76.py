@@ -1,12 +1,15 @@
 from Crypto.Cipher import DES
 import base64
 
+
 def pad(s):
-    #Them vao cuoi so con thieu cho du boi cua 8
+    # Them vao cuoi so con thieu cho du boi cua 8
     return s + (8 - len(s) % 8) * chr(8 - len(s) % 8)
+
 
 def unpad(s):
     return s[:-ord(s[len(s)-1:])]
+
 
 def giaima_DES(s, k):
     txt = base64.b64decode(s)
@@ -14,6 +17,7 @@ def giaima_DES(s, k):
     cipher = DES.new(key, DES.MODE_ECB)
     detxt = unpad(cipher.decrypt(txt))
     return detxt
+
 
 if __name__ == "__main__":
     country = [
@@ -281,11 +285,11 @@ if __name__ == "__main__":
             decrypted = giaima_DES(encrypted[0], key)
             if plain.encode("utf-8") == decrypted:
                 print("Found key:")
-                print(key,'\n')
+                print(key, '\n')
                 true_key = key
                 break
 
     for e in encrypted:
         decrypted = giaima_DES(e, true_key).decode("utf8")
         print(e)
-        print(decrypted,'\n')
+        print(decrypted, '\n')

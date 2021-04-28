@@ -7,6 +7,7 @@ from Crypto.Hash import MD5, SHA1, SHA256, SHA512
 import csv
 import random
 
+
 def register():
     # check existing id
     with open("CSDL.csv", 'r+', newline='') as csdl:
@@ -30,27 +31,30 @@ def register():
             3: "SHA512",
         }
         hash_mode = random.randint(0, 3)
-        csdl_writer = csv.writer(csdl, delimiter='\t', quotechar='|', quoting=csv.QUOTE_MINIMAL)
+        csdl_writer = csv.writer(csdl, delimiter='\t',
+                                 quotechar='|', quoting=csv.QUOTE_MINIMAL)
         csdl_writer.writerow([usr, result[hash_mode].hexdigest().upper()])
-        print("Tạo user", usr, "thành công với mật khẩu được hash bởi", hash_info[hash_mode])
+        print("Tạo user", usr, "thành công với mật khẩu được hash bởi",
+              hash_info[hash_mode])
     return
+
 
 window = Tk()
 window.title("Welcome to Demo An Toàn Bảo Mật Thông Tin")
 
-lb0 = Label(window, text=" ",font=("Arial Bold", 10))
+lb0 = Label(window, text=" ", font=("Arial Bold", 10))
 lb0.grid(column=0, row=0)
 
-lbl = Label(window, text="Tạo tài khoản",font=("Arial Bold", 20))
+lbl = Label(window, text="Tạo tài khoản", font=("Arial Bold", 20))
 lbl.grid(column=1, row=1)
 
-usrlb = Label(window, text="Tên đăng nhập",font=("Arial", 14))
+usrlb = Label(window, text="Tên đăng nhập", font=("Arial", 14))
 usrlb.grid(column=0, row=2)
 
 usrtxt = Entry(window)
 usrtxt.grid(column=1, row=2)
 
-pwdlb = Label(window, text="Mật khẩu",font=("Arial", 14))
+pwdlb = Label(window, text="Mật khẩu", font=("Arial", 14))
 pwdlb.grid(column=0, row=3)
 
 pwdtxt = Entry(window, show='*')
